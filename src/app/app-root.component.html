@@ -1,0 +1,32 @@
+<h1>Hello from {{ name }}!</h1>
+
+<div>
+  <h1>List of Todo</h1>
+  <ul>
+    @for (todo of todos; track todo.id) {
+    <li>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span>ID: {{ todo.id }}</span>
+        <span>Label: {{ todo.label }}</span>
+        <span>Completed: {{ todo.completed }}</span>
+        <span>-------------------------------</span>
+      </div>
+    </li>
+    } @empty {
+    <span> Empty list of Todos </span>
+    }
+  </ul>
+</div>
+
+<div>
+  <h2>Add Todo</h2>
+
+  <input
+    #newTodo
+    placeholder="Add Todo"
+    (keyup.enter)="createTodo(newTodo.value); newTodo.value = ''"
+    id="addItemInput"
+  />
+
+  <button type="submit" (click)="createTodo(newTodo.value)">Add</button>
+</div>
